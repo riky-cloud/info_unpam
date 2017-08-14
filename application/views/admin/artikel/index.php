@@ -36,64 +36,63 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Artikel</h2>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>judul</th>
-                          <th>Position</th>
-                          <th>Office</th>
-                          <th>Age</th>
-                          <th>Start date</th>
-                          <th>Salary</th>
+                          <th>No</th>
+                          <th>Kategori</th>
+                          <th>Foto</th>
+                          <th>Judul</th>
+                          <th>Created</th>
+                          <th>Updated</th>
+                          <th>Option</th>
                         </tr>
                       </thead>
 
 
                       <tbody>
+						<?php 
+						$i = 1;
+						foreach($list as $row){ 
+						?>
                         <tr>
-                          <td>Tiger Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td>$320,800</td>
+                          <td><?php echo $i; ?></td>
+                          <td><?php echo $row->kategori; ?></td>
+                          <td><?php echo $row->foto; ?></td>
+                          <td><?php echo $row->judul; ?></td>
+                          <td><?php echo $row->created_date; ?></td>
+                          <td><?php echo $row->updated; ?></td>
+                          <td>
+						  <a href=''>edit</a>
+						  <a href=''>view</a>
+						  <a href="#" onclick="openModal('http://localhost/info_unpam/admin/artikel');">test </a>
+						  </td>
                         </tr>
-                        <tr>
-                          <td>Garrett Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                        </tr>
-                        <tr>
-                          <td>Ashton Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td>$86,000</td>
-                        </tr>
-                        <tr>
-                          <td>Cedric Kelly</td>
-                          <td>Senior Javascript Developer</td>
-                          <td>Edinburgh</td>
-                          <td>22</td>
-                          <td>2012/03/29</td>
-                          <td>$433,060</td>
-                        </tr>
-                        <tr>
-                          <td>Airi Satou</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>33</td>
-                          <td>2008/11/28</td>
-                          <td>$162,700</td>
-                        </tr>
+					  <?php $i++; } ?>
 
                       </tbody>
                     </table>

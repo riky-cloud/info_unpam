@@ -19,7 +19,7 @@
       <li><a href='<?php echo base_url('admin'); ?>'><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a></li>
       <li><a>Artikel <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="<?php echo base_url('admin/artikel'); ?>">list</a></li>
+          <li><a href="<?php echo base_url('admin/artikel/list'); ?>">list</a></li>
           <li><a href="#">insert</a></li>
         </ul>
       </li>
