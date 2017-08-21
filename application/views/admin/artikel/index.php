@@ -36,27 +36,8 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Artikel</h2>
-	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
+                        <a onclick="openModal('<?php echo base_url('admin/view_artikel');?>');" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title data-original-title="Detail artikel"><i class="fa fa-eye"></i></a>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -75,9 +56,9 @@
 
 
                       <tbody>
-						<?php 
+						<?php
 						$i = 1;
-						foreach($list as $row){ 
+						foreach($list as $row){
 						?>
                         <tr>
                           <td><?php echo $i; ?></td>
@@ -112,7 +93,36 @@
       </div>
     </div>
 
+    <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Detail Artikel</h4>
+              </div>
+              <div class="modal-body">
+                <iframe id="iframe-view" width="100%" height="450" frameborder="0"></iframe>
+              </div>
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-default" data-dismiss="modal">Tutup</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+<script type="text/javascript">
+        function openModal(src){
+
+            $('#iframe-view').attr("src",src);
+            $('#myModal').modal({show:true})
+            $("#myModal").on('hide.bs.modal', function () {
+              $('#iframe-view').attr("src","");
+            });
+        };
+</script>
 
 <?php $this->load->view('admin/shared/footer'); ?>
 

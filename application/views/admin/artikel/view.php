@@ -12,17 +12,17 @@
             <div class="clearfix"></div>
 
             <!-- sidebar menu -->
-            <?php $this->load->view('admin/shared/menu'); ?>
+            <?php //$this->load->view('admin/shared/menu'); ?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <?php $this->load->view('admin/shared/menu_footer'); ?>
+            <?php //$this->load->view('admin/shared/menu_footer'); ?>
             <!-- /menu footer buttons -->
           </div>
         </div>
 
         <!-- top navigation -->
-        <?php $this->load->view('admin/shared/menu_top'); ?>
+        <?php //$this->load->view('admin/shared/menu_top'); ?>
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -56,7 +56,7 @@
         <!-- /page content -->
 
         <!-- footer content -->
-        <?php $this->load->view('admin/shared/footer_text'); ?>
+        <?php //$this->load->view('admin/shared/footer_text'); ?>
         <!-- /footer content -->
       </div>
     </div>
