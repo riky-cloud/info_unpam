@@ -8,6 +8,21 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/home/index');
 	}
 
+	public function view_artikel()
+	{
+		$this->load->view('admin/artikel/view');
+	}
+
+	public function detail_artikel()
+	{
+		$this->load->view('admin/artikel/view');
+	}
+
+	public function edit_artikel()
+	{
+		$this->load->view('admin/artikel/edit');
+	}
+
 	public function artikel()
 	{
 		$query = $this->db->query("SELECT a.`id`, a.`judul`, a.`isi`, a.`created_date`, a.`updated`, k.`nama` kategori, f.`file_name` foto FROM tbl_artikel a
@@ -20,5 +35,7 @@ class Admin extends CI_Controller {
 		$data = $query->result();
 		$this->load->view('admin/artikel/index',  array('list' => $data));
 	}
+
+
 
 }
