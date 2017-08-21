@@ -40,21 +40,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Form Design <small>different form elements</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
+
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -62,45 +48,26 @@
                     <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Kategori<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                            <select class="form-control" name="kategori">
+                                <?php
+                                    foreach ($kategori as $value) {
+                                        echo "<option value=".$value->id.">".$value->nama."</option>";
+                                    }
+                                ?>
+                            </select>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Judul <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="judul" name="judul" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name / Initial</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="gender" class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="male" data-parsley-multiple="gender"> &nbsp; Male &nbsp;
-                            </label>
-                            <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="female" data-parsley-multiple="gender"> Female
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                        </div>
-                      </div>
+
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">isi <span class="required">*</span>
@@ -122,6 +89,8 @@
 
 
                     </form>
+                    <button id="openBtn" data-src="<?php echo base_url('image/picker');?>" data-toggle="modal" type="button" class="btn btn-primary"><i class="fa fa-picture-o"></i></button>
+                    <a onclick="openModal('<?php echo base_url('image/picker/');?>');" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title data-original-title="Detail artikel">view</a>
                   </div>
                 </div>
               </div>
@@ -139,5 +108,47 @@
     </div>
 
 
+    <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <!-- <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Foto</h4>
+              </div> -->
+              <div class="modal-body">
+                <iframe id="iframe-pick" width="100%" height="450" frameborder="0"></iframe>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
 <?php $this->load->view('admin/shared/footer'); ?>
+<script type="text/javascript">
+    function from_modal(img, id){
+        $('#judul').val(img);
+    }
+    var src = $("#openBtn").attr('data-src');
+    $('#openBtn').click(function(){
+        $('#iframe-pick').attr("src",src);
+        $('#myModal').modal({show:true})
+        $("#myModal").on('hide.bs.modal', function () {
+          $('#iframe-pick').attr("src","");
+        });
+    });
+
+    function openModal(src){
+
+
+        $('#iframe-view').attr("src",src);
+        $('#myModal').modal({show:true})
+        $("#myModal").on('hide.bs.modal', function () {
+          $('#iframe-view').attr("src","");
+        });
+    };
+</script>

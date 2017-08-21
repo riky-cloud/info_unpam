@@ -10,12 +10,26 @@ class Admin extends CI_Controller {
 
 	public function view_artikel()
 	{
-		$this->load->view('admin/artikel/view');
+		$id = $this->uri->segment(3);
+		if(is_numeric($id)){
+			$query = $this->db->query("SELECT a.`id`, a.`judul`, a.`isi`, a.`created_date`, a.`updated`, k.`nama` kategori, f.`file_name` foto FROM tbl_artikel a
+				LEFT JOIN tbl_kategori k
+				ON a.`id_kategori` = k.`id`
+				LEFT JOIN tbl_foto f
+				ON f.`id_rev` = a.`id` AND f.`id_kategori` = a.`id_kategori`
+				WHERE a.`id` = '$id' AND a.`deleted` = '0'
+			");
+			$data = $query->result();
+			$this->load->view('admin/artikel/view',  array('data' => $data[0]));
+		}
 	}
 
-	public function detail_artikel()
+	public function create_artikel()
 	{
-		$this->load->view('admin/artikel/view');
+		$query = $this->db->query("select * from tbl_kategori where deleted = '0'");
+		$kategori = $query->result();
+
+		$this->load->view('admin/artikel/insert', array('kategori' => $kategori));
 	}
 
 	public function edit_artikel()

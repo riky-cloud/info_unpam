@@ -69,8 +69,7 @@
                           <td><?php echo $row->updated; ?></td>
                           <td>
 						  <a href=''>edit</a>
-						  <a href=''>view</a>
-						  <a href="#" onclick="openModal('http://localhost/info_unpam/admin/artikel');">test </a>
+                          <a onclick="openModal('<?php echo base_url('admin/view_artikel/'.$row->id);?>');" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title data-original-title="Detail artikel">view</a>
 						  </td>
                         </tr>
 					  <?php $i++; } ?>
