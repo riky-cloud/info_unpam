@@ -36,7 +36,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Artikel</h2>
-                        <a onclick="openModal('<?php echo base_url('admin/view_artikel');?>');" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title data-original-title="Detail artikel"><i class="fa fa-eye"></i></a>
+
 
                     <div class="clearfix"></div>
                   </div>
@@ -53,36 +53,35 @@
                           <th>Option</th>
                         </tr>
                       </thead>
-
-
                       <tbody>
-						<?php
-						$i = 1;
-						foreach($list as $row){
-						?>
-                        <tr>
-                          <td><?php echo $i; ?></td>
-                          <td><?php echo $row->kategori; ?></td>
-                          <td><?php echo $row->foto; ?></td>
-                          <td><?php echo $row->judul; ?></td>
-                          <td><?php echo $row->created_date; ?></td>
-                          <td><?php echo $row->updated; ?></td>
-                          <td>
-						  <a href=''>edit</a>
-                          <a onclick="openModal('<?php echo base_url('admin/view_artikel/'.$row->id);?>');" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title data-original-title="Detail artikel">view</a>
-						  </td>
-                        </tr>
-					  <?php $i++; } ?>
+                        <?php
+                        $i = 1;
+                        foreach($list as $row){
+                          ?>
+                          <tr>
+                            <td><?php echo $i; ?></td>
+                            <td><?php echo $row->kategori; ?></td>
+                            <td><?php echo $row->foto; ?></td>
+                            <td><?php echo $row->judul; ?></td>
+                            <td><?php echo $row->created_date; ?></td>
+                            <td><?php echo $row->updated; ?></td>
+                            <td>
+                              <a href=''>edit</a>
+                              <a onclick="openModal('<?php echo base_url('admin/artikel/view/'.$row->id);?>');" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title data-original-title="Detail artikel">view</a>
+                            </td>
+                          </tr>
+                          <?php $i++; } ?>
 
-                      </tbody>
-                    </table>
+                        </tbody>
+                      </table>
+                      <h2><a class="btn btn-xs btn-primary" href="<?php echo base_url('admin/artikel/create'); ?>"> insert</a></h2>
+                    </div>
                   </div>
                 </div>
-              </div>
 
+              </div>
             </div>
           </div>
-        </div>
 
         <!-- /page content -->
 

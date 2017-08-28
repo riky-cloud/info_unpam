@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 
+	function __construct() {
+		parent::__construct();
+		if(empty($_SESSION['id'])){
+			redirect(base_url('login'));
+		}
+  }
+
 	public function index()
 	{
 		$this->load->view('admin/home/index');
@@ -32,12 +39,17 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/artikel/insert', array('kategori' => $kategori));
 	}
 
+	public funtion create_post()
+	{
+
+	}
+
 	public function edit_artikel()
 	{
 		$this->load->view('admin/artikel/edit');
 	}
 
-	public function artikel()
+	public function artikel3()
 	{
 		$query = $this->db->query("SELECT a.`id`, a.`judul`, a.`isi`, a.`created_date`, a.`updated`, k.`nama` kategori, f.`file_name` foto FROM tbl_artikel a
 			LEFT JOIN tbl_kategori k
