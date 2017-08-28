@@ -14,17 +14,32 @@ class Image extends CI_Controller {
 		if($file == null) {
 			$file = 'default.jpg';
 		}
-		$source = base_url('assets/images/'.$file);
-		$images = imagecreatefromjpeg($source);
+		// $source = base_url('assets/images/'.$file);
+		// $images = imagecreatefromjpeg($source);
+		//
+		// // Set the content type header - in this case image/jpeg
+		// header('Content-Type: image/png');
+		//
+		// // Output the image
+		// return imagejpeg($images, NULL, 100);
+		//
+		// // Free up memory
+		// imagedestroy($images);
 
-		// Set the content type header - in this case image/jpeg
-		header('Content-Type: image/jpeg');
+		$image = base_url('assets/images/'.$file);
+		$filename = basename($image);
+		$file_extension = strtolower(substr(strrchr($filename,"."),1));
+		switch( $file_extension ) {
+		    case "gif": $ctype="image/gif"; break;
+		    case "png": $ctype="image/png"; break;
+		    case "jpeg":
+		    case "jpg": $ctype="image/jpeg"; break;
+		    default:
+		}
 
-		// Output the image
-		return imagejpeg($images, NULL, 100);
-
-		// Free up memory
-		imagedestroy($images);
+		header('Content-type: ' . $ctype);
+		$image = file_get_contents($image);
+		echo $image;
 	}
 
 	public function picker()

@@ -1,5 +1,4 @@
 <?php $this->load->view('front/shared/header'); ?>
-
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -14,7 +13,7 @@
 
 
 							<!-- terkini -->
-                                <?php $this->load->view('front/shared/right_list_2x2', array('title' => 'Terkini')); ?>
+                                <?php $this->load->view('front/shared/right_list_2x2', array('title' => 'Terkini', 'data' => $list)); ?>
                                 <?php $this->load->view('front/shared/right_list_3x3', array('title' => 'Terkini')); ?>
 
 

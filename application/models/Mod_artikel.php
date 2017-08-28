@@ -3,7 +3,19 @@ class Mod_artikel extends CI_Model {
 
     public function getList($id)
     {
-        $query = $this->db->query("SELECT a.`id`, a.`judul`, a.`isi`, a.`created_date`, a.`updated`, k.`nama` kategori, f.`file_name` foto FROM tbl_artikel a
+        $query = $this->db->query("SELECT a.`id`, a.`judul`, a.`isi`, a.deleted,  a.`created_date`, a.`updated`, k.`nama` kategori, f.`file_name` foto FROM tbl_artikel a
+        LEFT JOIN tbl_kategori k
+        ON a.`id_kategori` = k.`id`
+        LEFT JOIN tbl_foto f
+        ON f.`id` = a.`id_foto`
+        WHERE a.`id_user` = '1' AND a.`deleted` = '0'
+        ");
+        return $query->result();
+    }
+
+    public function getListAll()
+    {
+        $query = $this->db->query("SELECT a.`id`, a.`judul`, a.`isi`, a.deleted,  a.`created_date`, a.`updated`, k.`nama` kategori, f.`file_name` foto FROM tbl_artikel a
         LEFT JOIN tbl_kategori k
         ON a.`id_kategori` = k.`id`
         LEFT JOIN tbl_foto f
@@ -15,7 +27,7 @@ class Mod_artikel extends CI_Model {
 
     public function detail($id)
     {
-        $query = $this->db->query("SELECT a.`id`, a.`judul`, a.`isi`, a.`created_date`, a.`updated`, k.`nama` kategori, f.`file_name` foto FROM tbl_artikel a
+        $query = $this->db->query("SELECT a.`id`, a.`judul`, a.`isi`, a.`created_date`, a.deleted, a.`updated`, k.`nama` kategori, k.id id_kategori, f.`file_name` foto, f.id id_foto FROM tbl_artikel a
             LEFT JOIN tbl_kategori k
             ON a.`id_kategori` = k.`id`
             LEFT JOIN tbl_foto f

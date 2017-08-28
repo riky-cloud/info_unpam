@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Artikel extends CI_Controller {
+class Kategori extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
@@ -14,7 +14,7 @@ class Artikel extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/artikel/index',  array('list' => $this->Mod_artikel->getList($_SESSION['id'])));
+		$this->load->view('admin/kategori/index',  array('list' => $this->Mod_kategori->getList()));
 	}
 
 	public function view()
@@ -35,22 +35,19 @@ class Artikel extends CI_Controller {
 	public function create_post()
 	{
 		$data = array(
-			'id_kategori' 	=> $_POST['id_kategori'],
-			'id_user' 		=> $_SESSION['id'],
-			'id_foto' 		=> $_POST['id_foto'],
-			'judul' 		=> $_POST['judul'],
-			'isi' 			=> $_POST['isi'],
+			'nama' 			=> $_POST['nama'],
+			'keterangan' 	=> $_SESSION['keterangan'],
 			'created_date' 	=> date("Y-m-d G:i:sa"),
 			'updated' 		=> date("Y-m-d G:i:sa"),
 			'deleted' 		=> '0',
 		);
-		$insert = $this->db->insert('tbl_artikel', $data);
+		$insert = $this->db->insert('tbl_kategori', $data);
 		if($insert){
 			$this->session->set_flashdata('result', '<h3>berhasil di input</h3>');
-			redirect(base_url('admin/artikel'));
+			redirect(base_url('admin/kategori'));
 		} else {
 			$this->session->set_flashdata('result', '<h3>gagal insert ke database</h3>');
-			redirect(base_url('admin/artikel'));
+			redirect(base_url('admin/kategori'));
 		}
 	}
 
@@ -58,33 +55,29 @@ class Artikel extends CI_Controller {
 	{
 		$id = $this->uri->segment(4);
 		if(is_numeric($id) and (!empty($id))){
-			$data = $this->Mod_artikel->detail($id);
-			$kategori = $this->Mod_kategori->getList();
-			$this->load->view('admin/artikel/edit', array('kategori' => $kategori, 'detail' => $data[0]));
+			$data = $this->Mod_kategori->detail($id);
+			$this->load->view('admin/kategori/edit', array('detail' => $data[0]));
 		}
 	}
 
 	public function update_post()
 	{
 		$data = array(
-			'id_kategori' 	=> $_POST['id_kategori'],
-			'id_user' 		=> $_SESSION['id'],
-			'id_foto' 		=> $_POST['id_foto'],
-			'judul' 		=> $_POST['judul'],
-			'isi' 			=> $_POST['isi'],
+			'nama' 			=> $_POST['nama'],
+			'keterangan' 	=> $_POST['keterangan'],
 			'created_date' 	=> date("Y-m-d G:i:sa"),
 			'updated' 		=> date("Y-m-d G:i:sa"),
-			'deleted' 		=> '0',
+			'deleted' 		=> $_POST['status'],
 		);
 		$this->db->set($data);
 		$this->db->where('id', $_POST['id']);
-		$update = $this->db->update('tbl_artikel', $data);
+		$update = $this->db->update('tbl_kategori', $data);
 		if($update){
 			$this->session->set_flashdata('result', '<h4>berhasil di update</h4>');
-			redirect(base_url('admin/artikel'));
+			redirect(base_url('admin/kategori/edit/'.$_POST['id']));
 		} else {
 			$this->session->set_flashdata('result', '<h4>gagal update ke database</h4>');
-			redirect(base_url('admin/artikel'));
+			redirect(base_url('admin/kategori/edit/'.$_POST['id']));
 		}
 	}
 

@@ -5,7 +5,7 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-mouse"></i> <span>Info</span></a>
+              <!-- <a href="index.html" class="site_title"><i class="fa fa-mouse"></i> <span>Info</span></a> -->
             </div>
 
             <div class="clearfix"></div>
@@ -54,8 +54,7 @@
                         <tr>
                           <th>No</th>
                           <th>Kategori</th>
-                          <th>Foto</th>
-                          <th>Judul</th>
+                          <th>keterangan</th>
                           <th>Created</th>
                           <th>Updated</th>
                           <th>status</th>
@@ -69,22 +68,59 @@
                           ?>
                           <tr>
                             <td><?php echo $i; ?></td>
-                            <td><?php echo $row->kategori; ?></td>
-                            <td><?php echo $row->foto; ?></td>
-                            <td><?php echo $row->judul; ?></td>
+                            <td><?php echo $row->nama; ?></td>
+                            <td><?php echo $row->keterangan; ?></td>
                             <td><?php echo $row->created_date; ?></td>
                             <td><?php echo $row->updated; ?></td>
                             <td><?php if($row->deleted == 0){echo "Publish";} else {echo "Unpublish";} ?></td>
                             <td>
-                              <a  class="btn btn-xs btn-primary" href='<?php echo base_url('admin/artikel/edit/'.$row->id); ?>'>edit</a>
-                              <a onclick="openModal('<?php echo base_url('admin/artikel/view/'.$row->id);?>');" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title data-original-title="Detail artikel">view</a>
+                              <a onclick="openModal('<?php echo base_url('admin/kategori/edit/'.$row->id);?>');" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title data-original-title="Detail artikel">edit</a>
                             </td>
                           </tr>
                           <?php $i++; } ?>
 
                         </tbody>
                       </table>
-                      <h2><a class="btn btn-xs btn-primary" href="<?php echo base_url('admin/artikel/create'); ?>"> insert</a></h2>
+
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="x_panel">
+                              <div class="x_title">
+                                  <h2>Insert Baru</h2>
+                                  <div class="clearfix"></div>
+                              </div>
+                              <div class="x_content">
+                                  <form id="demo-form2" method="post" action="<?php echo base_url('admin/kategori/create_post'); ?>" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+                                    <div class="form-group">
+                                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nama <span class="required">*</span>
+                                      </label>
+                                      <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="judul" name="nama" required="required" class="form-control col-md-7 col-xs-12">
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan <span class="required">*</span>
+                                      </label>
+                                      <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <textarea name="isi" rows="8" cols="60"></textarea>
+                                      </div>
+                                    </div>
+
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                      </div>
+                                    </div>
+
+                                  </form>
+
+                              </div>
+                          </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -114,7 +150,7 @@
                 <iframe id="iframe-view" width="100%" height="450" frameborder="0"></iframe>
               </div>
               <div class="modal-footer">
-                <button type="button"  class="btn btn-default" data-dismiss="modal">Tutup</button>
+                <button type="button"  class="btn btn-default" data-dismiss="modal" id="tutup"><a href="">Tutup</a></button>
               </div>
             </div>
 
@@ -130,6 +166,7 @@
               $('#iframe-view').attr("src","");
             });
         };
+
 </script>
 
 <?php $this->load->view('admin/shared/footer'); ?>
@@ -152,3 +189,9 @@
 <script src="<?php echo base_url(); ?>assets/admin/vendors/jszip/dist/jszip.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/vendors/pdfmake/build/pdfmake.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+<script type="text/javascript">
+$('#tutup').click(function(){
+    location.reload();
+})
+</script>

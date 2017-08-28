@@ -8,7 +8,7 @@
   <div class="login_wrapper">
     <div class="animate form login_form">
       <section class="login_content">
-        <?php echo $_SESSION['result_login']; ?>
+        <?php if(!empty($_SESSION['result_login'])) { echo $_SESSION['result_login']; }?>
         <form method="post" action="<?php echo base_url('login/post'); ?>">
           <h1>Login Form</h1>
           <div>

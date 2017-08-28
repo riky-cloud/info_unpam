@@ -39,12 +39,13 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Edit Artikel</h2>
+                    <h2>Form Design <small>different form elements</small></h2>
+
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <br>
-                    <form id="demo-form2" method="post" action="<?php echo base_url('admin/artikel/update_post'); ?>" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+                    <form id="demo-form2" method="post" action="<?php echo base_url('admin/artikel/create_post'); ?>" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >Kategori<span class="required">*</span>
@@ -53,12 +54,7 @@
                             <select class="form-control" name="id_kategori">
                                 <?php
                                     foreach ($kategori as $value) {
-                                        if($value->id == $detail->id_kategori) {
-                                            $selected = 'selected';
-                                        } else {
-                                            $selected = '';
-                                        }
-                                        echo "<option value=".$value->id." $selected>".$value->nama."</option>";
+                                        echo "<option value=".$value->id.">".$value->nama."</option>";
                                     }
                                 ?>
                             </select>
@@ -69,7 +65,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Judul <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="judul" name="judul" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $detail->judul; ?>">
+                          <input type="text" id="judul" name="judul" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
@@ -78,9 +74,8 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="input-group">
-                            <input type="text" id="foto" class="form-control" disabled value="<?php echo $detail->foto; ?>">
-                            <input type="text" id="id_foto" name="id_foto"  hidden value="<?php echo $detail->id_foto; ?>">
-                            <input type="text" id="id_foto" name="id"  hidden value="<?php echo $detail->id; ?>">
+                            <input type="text" id="foto" class="form-control" disabled>
+                            <input type="text" id="id_foto" name="id_foto"  hidden>
                             <span class="input-group-btn">
                                 <button id="openBtn" data-src="<?php echo base_url('image/picker');?>" data-toggle="modal" type="button" class="btn btn-primary"><i class="fa fa-picture-o"></i></button>
                             </span>
@@ -88,23 +83,15 @@
                         </div>
                       </div>
 
+
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">isi <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea name="isi" rows="8" cols="40"><?php echo $detail->isi; ?></textarea>
+                          <textarea name="isi" rows="8" cols="40"></textarea>
                         </div>
                       </div>
 
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Status <span class="required">*</span></label>
-                          <div class="col-md-6 col-sm-6 col-xs-5">
-                              <select class="form-control" name="status">
-                                  <option value='0' <?php if($detail->deleted == '0'){echo "selected";} ?>>publish</option>
-                                  <option value='1' <?php if($detail->deleted == '1'){echo "selected";} ?>>unpublish</option>
-                              </select>
-                          </div>
-                      </div>
 
                       <div class="ln_solid"></div>
                       <div class="form-group">

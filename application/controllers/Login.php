@@ -14,7 +14,7 @@ class Login extends CI_Controller {
 		$email 		= $this->db->escape($_POST['email']);
 		$password 	= $this->db->escape(md5($_POST['pass']));
 
-		$query = $this->db->query("select * from tbl_user where email = '$email' and password = '$password' and deleted = '0'");
+		$query = $this->db->query("select * from tbl_user where email = $email and password = $password and deleted = '0'");
 		$user = $query->result();
 		if(empty($user)) {
 			$this->session->set_flashdata('result_login', 'email dan database tidak ditemukan.');

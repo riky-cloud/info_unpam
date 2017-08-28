@@ -3,55 +3,26 @@
         <h2><?php echo $title; ?></h2>
     </header>
     <div class="posts">
+        <?php
+            $i = 1;
+            foreach ($data as $val) {
+        ?>
         <article>
-            <a href="#" class="image"><img src="<?php echo base_url(); ?>assets/front/images/pic01.jpg" alt="" /></a>
-            <h3>Interdum aenean</h3>
-            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+            <a href="#" class="image"><img src="<?php echo base_url('image/view/'.$val->foto); ?>" alt=" <?php echo $val->judul; ?>" style="max-height: 250px; min-height: 250px;"/></a>
+            <h3><?php echo $val->judul; ?></h3>
+            <p><?php echo $val->isi; ?></p>
             <ul class="actions">
                 <li><a href="#" class="button">More</a></li>
-                <li>2017-02-02</li>
+                <li><?php echo $val->updated; ?></li>
             </ul>
         </article>
-        <article>
-            <a href="#" class="image"><img src="<?php echo base_url(); ?>assets/front/images/pic02.jpg" alt="" /></a>
-            <h3>Nulla amet dolore</h3>
-            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-            <ul class="actions">
-                <li><a href="#" class="button">More</a></li>
-            </ul>
-        </article>
-        <article>
-            <a href="#" class="image"><img src="<?php echo base_url(); ?>assets/front/images/pic03.jpg" alt="" /></a>
-            <h3>Tempus ullamcorper</h3>
-            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-            <ul class="actions">
-                <li><a href="#" class="button">More</a></li>
-            </ul>
-        </article>
-        <article>
-            <a href="#" class="image"><img src="<?php echo base_url(); ?>assets/front/images/pic04.jpg" alt="" /></a>
-            <h3>Sed etiam facilis</h3>
-            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-            <ul class="actions">
-                <li><a href="#" class="button">More</a></li>
-            </ul>
-        </article>
-        <article>
-            <a href="#" class="image"><img src="<?php echo base_url(); ?>assets/front/images/pic05.jpg" alt="" /></a>
-            <h3>Feugiat lorem aenean</h3>
-            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-            <ul class="actions">
-                <li><a href="#" class="button">More</a></li>
-            </ul>
-        </article>
-        <article>
-            <a href="#" class="image"><img src="<?php echo base_url(); ?>assets/front/images/pic06.jpg" alt="" /></a>
-            <h3>Amet varius aliquam</h3>
-            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-            <ul class="actions">
-                <li><a href="#" class="button">More</a></li>
-            </ul>
-        </article>
+        <?php
+            if($i == 6){
+                break;
+            }
+        }
+        ?>
+
     </div>
 </section>
 
