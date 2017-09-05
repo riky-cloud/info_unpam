@@ -50,4 +50,6 @@ class Image extends CI_Controller {
 		$this->load->view('admin/images/picker', array('foto' => $data));
 	}
 
+	
+
 }
