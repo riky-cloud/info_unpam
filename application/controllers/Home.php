@@ -17,5 +17,13 @@ class Home extends CI_Controller {
 		$this->load->view('front/home/index', $data);
 	}
 
+	public function detail()
+	{
+		$id = $this->uri->segment(3);
+		$data['detail'] = $this->Mod_artikel->detail($id);
+		$this->load->view('front/detail/index', $data);
+		// print_r($data);
+	}
+
 
 }
