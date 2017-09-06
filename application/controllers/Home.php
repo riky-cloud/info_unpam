@@ -5,9 +5,9 @@ class Home extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		if(empty($_SESSION['id'])){
-			redirect(base_url('login'));
-		}
+		// if(empty($_SESSION['id'])){
+		// 	redirect(base_url('login'));
+		// }
 		$this->load->model('Mod_artikel');
 	}
 
