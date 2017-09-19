@@ -19,10 +19,13 @@ class Home extends CI_Controller {
 
 	public function detail()
 	{
-		$id = $this->uri->segment(3);
+		$id = (int)$this->uri->segment(3);
 		$data['detail'] = $this->Mod_artikel->detail($id);
+		if(empty($data['detail'])) {
+			redirect(base_url('404'));
+		}
+
 		$this->load->view('front/detail/index', $data);
-		// print_r($data);
 	}
 
 
