@@ -6,14 +6,13 @@ class Home extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('Mod_artikel');
+		$this->load->library('cache_method');
 	}
 
 	public function index()
 	{
-		$data['list'] = $this->Mod_artikel->getListAll();
+		$data['list'] = $this->cache_method->get('Mod_artikel', 'getListAll', 'list-terkini','', true);
 		$this->load->view('front/home/index', $data);
-		// $this->output->cache(60);
-		// $this->output->delete_cache('/');
 	}
 
 	public function detail()

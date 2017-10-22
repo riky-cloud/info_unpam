@@ -10,6 +10,8 @@ class Artikel extends CI_Controller {
 		}
 		$this->load->model('Mod_artikel');
 		$this->load->model('Mod_kategori');
+		$this->load->library('cache_method');
+
 	}
 
 	public function index()
@@ -46,6 +48,7 @@ class Artikel extends CI_Controller {
 		);
 		$insert = $this->db->insert('tbl_artikel', $data);
 		if($insert){
+			$this->cache_method->clearCache(array('list-terkini'));
 			$this->session->set_flashdata('result', '<h3>berhasil di input</h3>');
 			redirect(base_url('admin/artikel'));
 		} else {
@@ -80,6 +83,7 @@ class Artikel extends CI_Controller {
 		$this->db->where('id', $_POST['id']);
 		$update = $this->db->update('tbl_artikel', $data);
 		if($update){
+			$this->cache_method->clearCache(array('list-terkini'));
 			$this->session->set_flashdata('result', '<h4>berhasil di update</h4>');
 			redirect(base_url('admin/artikel'));
 		} else {
