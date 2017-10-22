@@ -1,21 +1,14 @@
 <?php $this->load->view('front/shared/header'); ?>
-
 		<!-- Wrapper -->
 			<div id="wrapper">
-
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-
-
 							<!-- headline -->
                                 <?php $this->load->view('front/detail/detail', array('detail' => $detail[0])); ?>
-
-
-
 						</div>
 					</div>
-
+					
 				<!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">

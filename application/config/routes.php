@@ -7,3 +7,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['kanal/(:any)'] = 'kanal/index/$1';
+$route['admin'] = 'admin/index';

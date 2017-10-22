@@ -26,12 +26,17 @@ class Login extends CI_Controller {
 				'name'  	=> $data->nama,
 				'email'  	=> $data->email,
 				'id'  		=> $data->id,
-        'level'  	=> $data->level,
-        'logged_in' => TRUE
+        		'level'  	=> $data->level,
+        		'logged_in' => TRUE
 			);
 			$this->session->set_userdata($set_session);
 			redirect(base_url('admin'));
 		}
+	}
 
+	public function out()
+	{
+		session_destroy();
+		redirect(base_url('login'));
 	}
 }
